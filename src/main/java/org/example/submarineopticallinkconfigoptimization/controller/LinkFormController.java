@@ -3,9 +3,13 @@ package org.example.submarineopticallinkconfigoptimization.controller;
 import com.dlsc.formsfx.model.structure.*;
 import com.dlsc.formsfx.view.renderer.FormRenderer;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkRequestDTO;
+import org.example.submarineopticallinkconfigoptimization.service.LinkFormService;
+
+import java.util.List;
 
 public class LinkFormController {
 
@@ -13,10 +17,11 @@ public class LinkFormController {
     private VBox vBox;
 
     private Button calculateButton;
-
     private Form linkForm;
 
     private LinkRequestDTO linkRequestDTO;
+
+    private final LinkFormService linkFormService = new LinkFormService();
 
 
 
@@ -94,7 +99,28 @@ public class LinkFormController {
     protected void performCalculations(){
 
         linkForm.persist();
-        System.out.println(linkRequestDTO.getLinkName().get());
+
+        // call verification function from service
+        List<String> listOfMessages= linkFormService.verifyInput(linkRequestDTO);
+
+        // if input is invalid :  alert
+        if(!listOfMessages.isEmpty()){
+
+            StringBuilder alertContent = new StringBuilder();
+            for (String message : listOfMessages){
+                alertContent.append(message).append("\n").append("\n");
+            }
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Invalid input");
+            alert.setContentText(alertContent.toString());
+            alert.showAndWait();
+
+        }else{
+            System.out.println("Input is valid");
+        }
+
+
 
     }
 
