@@ -2,8 +2,6 @@ package org.example.submarineopticallinkconfigoptimization.controller;
 
 import com.dlsc.formsfx.model.structure.*;
 import com.dlsc.formsfx.view.renderer.FormRenderer;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
@@ -55,8 +53,14 @@ public class LinkFormController {
         Field<DoubleField> field_8 = Field.ofDoubleType(linkRequestDTO.getMaxAmplifierGain())
                 .label("Maximum permissible gain per amplifier (dB):");
 
-        Field<DoubleField> field_9 = Field.ofDoubleType(linkRequestDTO.getMaxAmplifierOutputPower())
-                .label("Maximum output power of the amplifiers (dBm):");
+        Field<DoubleField> field_9 = Field.ofDoubleType(linkRequestDTO.getMinAmplifierInputPower())
+                .label("Minimum input power for each amplifier (dBm):");
+
+        Field<DoubleField> field_10 = Field.ofDoubleType(linkRequestDTO.getMaxAmplifierOutputPower())
+                .label("Maximum output power of each amplifiers (dBm):");
+
+        Field<IntegerField> field_11 = Field.ofIntegerType(linkRequestDTO.getMaxNumberOfAmplifiers())
+                .label("Maximum number of amplifiers:");
 
 
         // Create the Form
@@ -70,7 +74,9 @@ public class LinkFormController {
                         field_6,
                         field_7,
                         field_8,
-                        field_9
+                        field_9,
+                        field_10,
+                        field_11
                 )
         ).title("New Link Form");
 

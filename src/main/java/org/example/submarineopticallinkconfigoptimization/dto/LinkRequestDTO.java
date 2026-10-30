@@ -1,9 +1,6 @@
 package org.example.submarineopticallinkconfigoptimization.dto;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,8 +34,14 @@ public class LinkRequestDTO {
     // Maximum permissible gain per amplifier (dB)
     private DoubleProperty maxAmplifierGain =  new SimpleDoubleProperty(0.0);
 
+    // Minimum input power for each amplifier (dBm)
+    private DoubleProperty minAmplifierInputPower =  new SimpleDoubleProperty(0.0);
+
     // Maximum output power of the amplifiers (dBm)
     private DoubleProperty maxAmplifierOutputPower =  new SimpleDoubleProperty(0.0);
+
+    // Maximum number of amplifiers
+    private IntegerProperty maxNumberOfAmplifiers = new SimpleIntegerProperty(0);
 
 
 

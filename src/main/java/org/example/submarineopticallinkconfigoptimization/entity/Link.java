@@ -38,8 +38,14 @@ public class Link {
     // Maximum permissible gain per amplifier (dB)
     private double maxAmplifierGain;
 
-    // Maximum output power of the amplifiers (dBm)
+    // Minimum input power for each amplifier (dBm)
+    private double minAmplifierInputPower;
+
+    // Maximum output power of each amplifier (dBm)
     private double maxAmplifierOutputPower;
+
+    // Maximum number of amplifiers
+    private double maxNumberOfAmplifiers;
 
 
 
@@ -49,7 +55,7 @@ public class Link {
 
     */
 
-    // The total number of amplifiers
+    // The optimal number of amplifiers
     private int numberOfAmplifiers;
 
     // The distance between two successive amplifiers (km)
