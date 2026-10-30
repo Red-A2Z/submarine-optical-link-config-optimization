@@ -37,7 +37,7 @@ public class LinkRequestDTO {
     // Minimum input power for each amplifier (dBm)
     private DoubleProperty minAmplifierInputPower =  new SimpleDoubleProperty(0.0);
 
-    // Maximum output power of the amplifiers (dBm)
+    // Maximum output power of each amplifier (dBm)
     private DoubleProperty maxAmplifierOutputPower =  new SimpleDoubleProperty(0.0);
 
     // Maximum number of amplifiers
