@@ -46,6 +46,11 @@ public class LinkFormService {
             listOfMessages.add("Maximum output power of the amplifiers must be equal or greater than Transmitter output power.");
         }
 
+        if(!(linkRequestDTO.getTransmitterOutputPower().get()>=linkRequestDTO.getMinAmplifierInputPower().get())){
+            listOfMessages.add("Transmitter output power must be equal or greater than Minimum input power for each amplifier.");
+        }
+
+
         return listOfMessages;
     }
 
