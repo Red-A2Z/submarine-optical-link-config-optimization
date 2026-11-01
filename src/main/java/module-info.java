@@ -6,6 +6,7 @@ module org.example.submarineopticallinkconfigoptimization {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires static lombok;
+    requires gurobi;
 
     opens org.example.submarineopticallinkconfigoptimization to javafx.fxml;
     exports org.example.submarineopticallinkconfigoptimization;
