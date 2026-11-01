@@ -2,13 +2,20 @@ package org.example.submarineopticallinkconfigoptimization.controller;
 
 import com.dlsc.formsfx.model.structure.*;
 import com.dlsc.formsfx.view.renderer.FormRenderer;
+import com.gurobi.gurobi.GRBException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import org.example.submarineopticallinkconfigoptimization.Application;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkRequestDTO;
+import org.example.submarineopticallinkconfigoptimization.dto.LinkResponseDTO;
 import org.example.submarineopticallinkconfigoptimization.service.LinkFormService;
 
+import java.io.IOException;
 import java.util.List;
 
 public class LinkFormController {
@@ -117,9 +124,56 @@ public class LinkFormController {
             alert.showAndWait();
 
         }else{
+
             System.out.println("Input is valid");
+
+            try {
+                LinkResponseDTO linkResponseDTO = linkFormService.calculateNumberOfAmplifiers(linkRequestDTO);
+                // No solution found
+                if(linkResponseDTO == null){
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setHeaderText("No solution found");
+                    alert.setContentText("We couldn't find a solution based on the input you provided.");
+                    alert.showAndWait();
+                }
+
+                //Positive case
+                try{
+                    openLinkDetails(linkResponseDTO);
+                }catch (IOException e){
+                    System.out.println("Error while trying to show Link Details");
+                }
+
+
+
+
+            } catch (GRBException e) {
+                System.out.println(e.getMessage());
+            }
+
+
+
+
         }
 
+
+
+    }
+
+
+
+
+    void openLinkDetails(LinkResponseDTO linkResponseDTO) throws IOException {
+
+        Stage linkDetailsStage =  new Stage();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("link-details-view.fxml"));
+        fxmlLoader.setController(new LinkDetailsController(linkResponseDTO));
+
+        Scene linkFormScene =  new Scene(fxmlLoader.load());
+
+        linkDetailsStage.setScene(linkFormScene);
+        linkDetailsStage.show();
 
 
     }
