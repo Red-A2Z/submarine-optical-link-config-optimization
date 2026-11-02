@@ -2,7 +2,8 @@ package org.example.submarineopticallinkconfigoptimization.controller;
 
 import com.dlsc.formsfx.model.structure.*;
 import com.dlsc.formsfx.view.renderer.FormRenderer;
-import com.gurobi.gurobi.GRBException;
+// You must have a license before using Gurobi
+//// import com.gurobi.gurobi.GRBException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -29,6 +30,8 @@ public class LinkFormController {
     private LinkRequestDTO linkRequestDTO;
 
     private final LinkFormService linkFormService = new LinkFormService();
+    // You must have a license before using Gurobi
+    //// private final GurobiCalculationsService gurobiCalculationsService = new GurobiCalculationsService();
 
 
 
@@ -127,30 +130,28 @@ public class LinkFormController {
 
             System.out.println("Input is valid");
 
-            try {
-                LinkResponseDTO linkResponseDTO = linkFormService.calculateNumberOfAmplifiers(linkRequestDTO);
-                // No solution found
-                if(linkResponseDTO == null){
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setHeaderText("No solution found");
-                    alert.setContentText("We couldn't find a solution based on the input you provided.");
-                    alert.showAndWait();
-                }
+            // You must have a license before using Gurobi
+            // If you want to use Gurobi, wrap the code in a try-catch block to handle the GRBException
+            //// LinkResponseDTO linkResponseDTO = gurobiCalculationsService.calculateNumberOfAmplifiers(linkRequestDTO);
 
-                //Positive case
-                try{
-                    openLinkDetails(linkResponseDTO);
-                }catch (IOException e){
-                    System.out.println("Error while trying to show Link Details");
-                }
+            LinkResponseDTO linkResponseDTO = null;
 
 
 
-
-            } catch (GRBException e) {
-                System.out.println(e.getMessage());
+            // No solution found
+            if(linkResponseDTO == null){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText("No solution found");
+                alert.setContentText("We couldn't find a solution based on the input you provided.");
+                alert.showAndWait();
             }
 
+            //Positive case
+            try{
+                openLinkDetails(linkResponseDTO);
+            }catch (IOException e){
+                System.out.println("Error while trying to show Link Details");
+            }
 
 
 
