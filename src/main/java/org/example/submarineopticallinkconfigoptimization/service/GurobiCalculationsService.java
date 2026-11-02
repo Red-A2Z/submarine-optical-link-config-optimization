@@ -1,4 +1,4 @@
-package org.example.submarineopticallinkconfigoptimization.controller;
+package org.example.submarineopticallinkconfigoptimization.service;
 
 import com.gurobi.gurobi.*;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkRequestDTO;
