@@ -52,10 +52,17 @@
             <version>1.18.48</version>
         </dependency>
         <dependency>
+            <groupId>org.ojalgo</groupId>
+            <artifactId>ojalgo</artifactId>
+            <version>57.5.0</version>
+        </dependency>
+        <!-- If you want to use gurobi instead of ojalgo -->
+        <dependency>
             <groupId>com.gurobi</groupId>
             <artifactId>gurobi</artifactId>
             <version>13.0.3</version>
         </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>

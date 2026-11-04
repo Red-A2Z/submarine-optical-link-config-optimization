@@ -7,6 +7,7 @@ module org.example.submarineopticallinkconfigoptimization {
     requires org.kordamp.bootstrapfx.core;
     requires static lombok;
     requires gurobi;
+    requires ojalgo;
 
     opens org.example.submarineopticallinkconfigoptimization to javafx.fxml;
     exports org.example.submarineopticallinkconfigoptimization;
