@@ -45,7 +45,7 @@ public class Link {
     private double maxAmplifierOutputPower;
 
     // Maximum number of amplifiers
-    private double maxNumberOfAmplifiers;
+    private int maxNumberOfAmplifiers;
 
 
 
