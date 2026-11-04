@@ -8,7 +8,7 @@ import org.example.submarineopticallinkconfigoptimization.entity.Link;
 public class GurobiCalculationsService {
 
 
-    private final LinkFormService linkFormService= new LinkFormService();
+    private final LinkService linkService = new LinkService();
 
 
 
@@ -75,12 +75,12 @@ public class GurobiCalculationsService {
             double amplifierInputPower = transmitterOutputPower - maxDistanceBetweenAmplifiers*attenuation;
             double finalReceivedPower = transmitterOutputPower - attenuation*length + minNumberOfAmplifiers*attenuation*maxDistanceBetweenAmplifiers;
 
-            Link link = linkFormService.mapToEntity(linkRequestDTO,maxDistanceBetweenAmplifiers, minNumberOfAmplifiers, amplifierGain,amplifierInputPower, finalReceivedPower);
+            Link link = linkService.mapToEntity(linkRequestDTO,maxDistanceBetweenAmplifiers, minNumberOfAmplifiers, amplifierGain,amplifierInputPower, finalReceivedPower);
 
             // implement DB logic //
 
 
-            return linkFormService.mapToResponseDto(link);
+            return linkService.mapToResponseDto(link);
 
         }
 

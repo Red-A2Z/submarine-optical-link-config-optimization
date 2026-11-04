@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import org.example.submarineopticallinkconfigoptimization.Application;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkRequestDTO;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkResponseDTO;
-import org.example.submarineopticallinkconfigoptimization.service.LinkFormService;
+import org.example.submarineopticallinkconfigoptimization.service.LinkService;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,7 +29,7 @@ public class LinkFormController {
 
     private LinkRequestDTO linkRequestDTO;
 
-    private final LinkFormService linkFormService = new LinkFormService();
+    private final LinkService linkService = new LinkService();
     // You must have a license before using Gurobi
     //// private final GurobiCalculationsService gurobiCalculationsService = new GurobiCalculationsService();
 
@@ -111,7 +111,7 @@ public class LinkFormController {
         linkForm.persist();
 
         // call verification function from service
-        List<String> listOfMessages= linkFormService.verifyInput(linkRequestDTO);
+        List<String> listOfMessages= linkService.verifyFormInput(linkRequestDTO);
 
         // if input is invalid :  alert
         if(!listOfMessages.isEmpty()){

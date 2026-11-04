@@ -1,6 +1,5 @@
 package org.example.submarineopticallinkconfigoptimization.service;
 
-import com.gurobi.gurobi.*;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkRequestDTO;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkResponseDTO;
 import org.example.submarineopticallinkconfigoptimization.entity.Link;
@@ -8,12 +7,12 @@ import org.example.submarineopticallinkconfigoptimization.entity.Link;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LinkFormService {
+public class LinkService {
 
 
 
 
-    public List<String> verifyInput(LinkRequestDTO linkRequestDTO){
+    public List<String> verifyFormInput(LinkRequestDTO linkRequestDTO){
 
         List<String> listOfMessages = new ArrayList<>();
 
