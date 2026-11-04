@@ -15,6 +15,7 @@ import org.example.submarineopticallinkconfigoptimization.Application;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkRequestDTO;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkResponseDTO;
 import org.example.submarineopticallinkconfigoptimization.service.LinkService;
+import org.example.submarineopticallinkconfigoptimization.service.OjAlgoCalculationsService;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,6 +31,7 @@ public class LinkFormController {
     private LinkRequestDTO linkRequestDTO;
 
     private final LinkService linkService = new LinkService();
+    private final OjAlgoCalculationsService ojAlgoCalculationsService= new OjAlgoCalculationsService();
     // You must have a license before using Gurobi
     //// private final GurobiCalculationsService gurobiCalculationsService = new GurobiCalculationsService();
 
@@ -134,9 +136,11 @@ public class LinkFormController {
             // If you want to use Gurobi, wrap the code in a try-catch block to handle the GRBException
             //// LinkResponseDTO linkResponseDTO = gurobiCalculationsService.calculateNumberOfAmplifiers(linkRequestDTO);
 
-            LinkResponseDTO linkResponseDTO = null;
+            LinkResponseDTO linkResponseDTO = ojAlgoCalculationsService.calculate(linkRequestDTO);
 
 
+            System.out.println("d = "+linkResponseDTO.getDistanceBetweenAmplifiers());
+            System.out.println("n = "+linkResponseDTO.getNumberOfAmplifiers());
 
             // No solution found
             if(linkResponseDTO == null){
