@@ -139,29 +139,27 @@ public class LinkFormController {
             LinkResponseDTO linkResponseDTO = ojAlgoCalculationsService.calculate(linkRequestDTO);
 
 
-            System.out.println("d = "+linkResponseDTO.getDistanceBetweenAmplifiers());
-            System.out.println("n = "+linkResponseDTO.getNumberOfAmplifiers());
-
             // No solution found
             if(linkResponseDTO == null){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setHeaderText("No solution found");
                 alert.setContentText("We couldn't find a solution based on the input you provided.");
                 alert.showAndWait();
+            }else{
+
+                System.out.println("d = "+linkResponseDTO.getDistanceBetweenAmplifiers());
+                System.out.println("n = "+linkResponseDTO.getNumberOfAmplifiers());
+
+                //Positive case
+                try{
+                    openLinkDetails(linkResponseDTO);
+                }catch (IOException e){
+                    System.out.println("Error while trying to show Link Details");
+                }
+
             }
-
-            //Positive case
-            try{
-                openLinkDetails(linkResponseDTO);
-            }catch (IOException e){
-                System.out.println("Error while trying to show Link Details");
-            }
-
-
 
         }
-
-
 
     }
 
