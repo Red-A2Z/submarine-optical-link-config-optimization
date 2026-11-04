@@ -39,8 +39,8 @@ public class LinkFormService {
             listOfMessages.add("Maximum permissible gain per amplifier must be greater than Minimum permissible gain per amplifier.");
         }
 
-        if(!(linkRequestDTO.getTransmitterOutputPower().get()>=linkRequestDTO.getMinReceivedPower().get())){
-            listOfMessages.add("Transmitter output power must be equal or greater than Minimum required received optical power.");
+        if(!(linkRequestDTO.getTransmitterOutputPower().get()>linkRequestDTO.getMinReceivedPower().get())){
+            listOfMessages.add("Transmitter output power must be greater than Minimum required received optical power.");
         }
 
         if(!(linkRequestDTO.getMaxAmplifierOutputPower().get()>=linkRequestDTO.getTransmitterOutputPower().get())){
