@@ -134,7 +134,7 @@ public class LinkFormController {
 
             // You must have a license before using Gurobi
             // If you want to use Gurobi, wrap the code in a try-catch block to handle the GRBException
-            //// LinkResponseDTO linkResponseDTO = gurobiCalculationsService.calculateNumberOfAmplifiers(linkRequestDTO);
+            //// LinkResponseDTO linkResponseDTO = gurobiCalculationsService.calculate(linkRequestDTO);
 
             LinkResponseDTO linkResponseDTO = ojAlgoCalculationsService.calculate(linkRequestDTO);
 

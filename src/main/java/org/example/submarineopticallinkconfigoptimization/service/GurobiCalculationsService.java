@@ -13,7 +13,7 @@ public class GurobiCalculationsService {
 
 
 
-    public LinkResponseDTO calculateNumberOfAmplifiers(LinkRequestDTO linkRequestDTO) throws GRBException {
+    public LinkResponseDTO calculate(LinkRequestDTO linkRequestDTO) throws GRBException {
 
         double length = linkRequestDTO.getLinkLength().get();
         double attenuation = linkRequestDTO.getLinkAttenuation().get();
