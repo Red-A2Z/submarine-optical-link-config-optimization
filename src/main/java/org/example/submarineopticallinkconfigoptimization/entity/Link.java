@@ -8,6 +8,8 @@ import lombok.Setter;
 @Setter
 public class Link {
 
+    private long id;
+
     /*
 
     Fields used as input

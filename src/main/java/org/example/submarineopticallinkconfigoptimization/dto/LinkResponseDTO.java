@@ -8,6 +8,8 @@ import lombok.Setter;
 @Setter
 public class LinkResponseDTO {
 
+    private long id;
+
     /*
 
     Fields used as input

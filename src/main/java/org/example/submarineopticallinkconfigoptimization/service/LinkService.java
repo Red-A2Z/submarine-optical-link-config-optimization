@@ -98,6 +98,8 @@ public class LinkService {
 
         LinkResponseDTO linkResponseDTO = new LinkResponseDTO();
 
+        linkResponseDTO.setId(link.getId());
+
         //Input fields
         linkResponseDTO.setLinkName(link.getLinkName());
         linkResponseDTO.setLinkDescription(link.getLinkDescription());
