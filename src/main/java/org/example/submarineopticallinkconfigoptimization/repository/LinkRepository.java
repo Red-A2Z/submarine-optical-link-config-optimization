@@ -78,4 +78,68 @@ public class LinkRepository {
 
 
 
+
+    public ObservableList<Link> getAllRecords(){
+
+        ObservableList<Link> records = FXCollections.observableArrayList();
+
+        String sql = "SELECT * FROM link;";
+
+        try(
+                Connection connection = DriverManager.getConnection(url,username,password);
+                Statement statement = connection.createStatement();
+                ResultSet resultSet =  statement.executeQuery(sql);
+        ){
+
+            while(resultSet.next()){
+                records.add(mapToEntity(resultSet));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return records;
+    }
+
+
+
+    private Link mapToEntity(ResultSet resultSet) throws SQLException {
+
+        Link link = new Link();
+
+        link.setId(resultSet.getLong(1));
+        link.setLinkName(resultSet.getString(2));
+        link.setLinkDescription(resultSet.getString(3));
+        link.setLinkLength(resultSet.getDouble(4));
+        link.setLinkAttenuation(resultSet.getDouble(5));
+        link.setTransmitterOutputPower(resultSet.getDouble(6));
+        link.setMinReceivedPower(resultSet.getDouble(7));
+        link.setMinAmplifierGain(resultSet.getDouble(8));
+        link.setMaxAmplifierGain(resultSet.getDouble(9));
+        link.setMinAmplifierInputPower(resultSet.getDouble(10));
+        link.setMaxAmplifierOutputPower(resultSet.getDouble(11));
+        link.setMaxNumberOfAmplifiers(resultSet.getInt(12));
+        link.setNumberOfAmplifiers(resultSet.getInt(13));
+        link.setDistanceBetweenAmplifiers(resultSet.getDouble(14));
+        link.setAmplifierGain(resultSet.getDouble(15));
+        link.setAmplifierInputPower(resultSet.getDouble(16));
+        link.setFinalReceivedPower(resultSet.getDouble(17));
+
+        return link;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
