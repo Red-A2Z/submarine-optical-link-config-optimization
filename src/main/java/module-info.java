@@ -8,6 +8,7 @@ module org.example.submarineopticallinkconfigoptimization {
     requires static lombok;
     requires gurobi;
     requires ojalgo;
+    requires java.sql;
 
     opens org.example.submarineopticallinkconfigoptimization to javafx.fxml;
     exports org.example.submarineopticallinkconfigoptimization;

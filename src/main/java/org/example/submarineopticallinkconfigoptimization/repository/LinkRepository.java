@@ -1,0 +1,83 @@
+package org.example.submarineopticallinkconfigoptimization.repository;
+
+import org.example.submarineopticallinkconfigoptimization.entity.Link;
+
+import java.sql.*;
+
+public class LinkRepository {
+
+
+    private final String url = "jdbc:postgresql://localhost:5432/postgres/link_db";
+    private final String username = "postgres";
+    private final String password = "123456";
+
+
+
+    public long createLink(Link link){
+
+        String sql = """
+        INSERT INTO link(
+        linkName,linkDescription,linkLength,linkAttenuation,
+        transmitterOutputPower,minReceivedPower,minAmplifierGain,maxAmplifierGain,
+        minAmplifierInputPower,maxAmplifierOutputPower,maxNumberOfAmplifiers,numberOfAmplifiers,
+        distanceBetweenAmplifiers,amplifierGain,amplifierInputPower,finalReceivedPower
+        )
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+        """;
+
+        try(
+                Connection connection = DriverManager.getConnection(url,username,password);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)
+                ){
+
+            preparedStatement.setString(1,link.getLinkName());
+            preparedStatement.setString(2,link.getLinkDescription());
+            preparedStatement.setDouble(3,link.getLinkLength());
+            preparedStatement.setDouble(4,link.getLinkAttenuation());
+
+            preparedStatement.setDouble(5,link.getTransmitterOutputPower());
+            preparedStatement.setDouble(6,link.getMinReceivedPower());
+            preparedStatement.setDouble(7,link.getMinAmplifierGain());
+            preparedStatement.setDouble(8,link.getMaxAmplifierGain());
+
+            preparedStatement.setDouble(9,link.getMinAmplifierInputPower());
+            preparedStatement.setDouble(10,link.getMaxAmplifierOutputPower());
+            preparedStatement.setInt(11,link.getMaxNumberOfAmplifiers());
+            preparedStatement.setInt(12,link.getNumberOfAmplifiers());
+
+            preparedStatement.setDouble(13,link.getDistanceBetweenAmplifiers());
+            preparedStatement.setDouble(14,link.getAmplifierGain());
+            preparedStatement.setDouble(15,link.getAmplifierInputPower());
+            preparedStatement.setDouble(16,link.getFinalReceivedPower());
+
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if(rowsAffected != 1 ){
+                throw new RuntimeException("An error has occurred while creating a link record in the db");
+            }
+
+            try(ResultSet generatedKeys = preparedStatement.getGeneratedKeys()){
+
+                if(generatedKeys.next()){
+                    return generatedKeys.getLong(1);
+                }
+                throw new RuntimeException("Generated id was not returned");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+}
