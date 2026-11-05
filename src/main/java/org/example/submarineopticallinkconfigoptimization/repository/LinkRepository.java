@@ -1,5 +1,7 @@
 package org.example.submarineopticallinkconfigoptimization.repository;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.example.submarineopticallinkconfigoptimization.entity.Link;
 
 import java.sql.*;
@@ -13,7 +15,7 @@ public class LinkRepository {
 
 
 
-    public long createLink(Link link){
+    public void createLink(Link link){
 
         String sql = """
         INSERT INTO link(
@@ -60,9 +62,11 @@ public class LinkRepository {
             try(ResultSet generatedKeys = preparedStatement.getGeneratedKeys()){
 
                 if(generatedKeys.next()){
-                    return generatedKeys.getLong(1);
+                    link.setId(generatedKeys.getLong(1));
                 }
-                throw new RuntimeException("Generated id was not returned");
+                else{
+                    throw new RuntimeException("Link ID was not set");
+                }
             }
 
         } catch (SQLException e) {
@@ -70,12 +74,6 @@ public class LinkRepository {
         }
 
     }
-
-
-
-
-
-
 
 
 
