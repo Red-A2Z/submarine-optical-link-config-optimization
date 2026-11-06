@@ -97,7 +97,7 @@ public class LinkRepository {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RepositoryException("An error has occurred while trying to get all link records from the db");
         }
 
         return records;
