@@ -3,6 +3,8 @@ package org.example.submarineopticallinkconfigoptimization.service;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkRequestDTO;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkResponseDTO;
 import org.example.submarineopticallinkconfigoptimization.entity.Link;
+import org.example.submarineopticallinkconfigoptimization.exception.RepositoryException;
+import org.example.submarineopticallinkconfigoptimization.repository.LinkRepository;
 import org.ojalgo.optimisation.ExpressionsBasedModel;
 import org.ojalgo.optimisation.Optimisation;
 import org.ojalgo.optimisation.Variable;
@@ -11,6 +13,7 @@ public class OjAlgoCalculationsService {
 
 
     private final LinkService linkService = new LinkService();
+    private final LinkRepository linkRepository = new LinkRepository();
 
 
     public LinkResponseDTO calculate(LinkRequestDTO linkRequestDTO){
@@ -63,8 +66,8 @@ public class OjAlgoCalculationsService {
 
                 Link link = linkService.mapToEntity(linkRequestDTO,maxDistanceBetweenAmplifiers, n, amplifierGain,amplifierInputPower, finalReceivedPower);
 
-                // implement DB logic //
-
+                // DB
+                linkRepository.createLink(link);
 
                 return linkService.mapToResponseDto(link);
 

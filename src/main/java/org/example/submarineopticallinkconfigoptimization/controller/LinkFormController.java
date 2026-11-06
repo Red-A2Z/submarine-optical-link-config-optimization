@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import org.example.submarineopticallinkconfigoptimization.Application;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkRequestDTO;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkResponseDTO;
+import org.example.submarineopticallinkconfigoptimization.exception.RepositoryException;
 import org.example.submarineopticallinkconfigoptimization.service.LinkService;
 import org.example.submarineopticallinkconfigoptimization.service.OjAlgoCalculationsService;
 
@@ -136,26 +137,36 @@ public class LinkFormController {
             // If you want to use Gurobi, wrap the code in a try-catch block to handle the GRBException
             //// LinkResponseDTO linkResponseDTO = gurobiCalculationsService.calculate(linkRequestDTO);
 
-            LinkResponseDTO linkResponseDTO = ojAlgoCalculationsService.calculate(linkRequestDTO);
 
+            try{
 
-            // No solution found
-            if(linkResponseDTO == null){
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setHeaderText("No solution found");
-                alert.setContentText("We couldn't find a solution based on the input you provided.");
-                alert.showAndWait();
-            }else{
+                LinkResponseDTO linkResponseDTO = ojAlgoCalculationsService.calculate(linkRequestDTO);
 
-                System.out.println("d = "+linkResponseDTO.getDistanceBetweenAmplifiers());
-                System.out.println("n = "+linkResponseDTO.getNumberOfAmplifiers());
+                if(linkResponseDTO == null){ // No solution found
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setHeaderText("No solution found");
+                    alert.setContentText("We couldn't find a solution based on the input you provided.");
+                    alert.showAndWait();
+                }else{
 
-                //Positive case
-                try{
-                    openLinkDetails(linkResponseDTO);
-                }catch (IOException e){
-                    System.out.println("Error while trying to show Link Details");
+                    System.out.println("d = "+linkResponseDTO.getDistanceBetweenAmplifiers());
+                    System.out.println("n = "+linkResponseDTO.getNumberOfAmplifiers());
+
+                    //Positive case
+                    try{
+                        openLinkDetails(linkResponseDTO);
+                    }catch (IOException e){
+                        System.out.println("Error while trying to show Link Details");
+                    }
+
                 }
+
+            }catch (RepositoryException e) {
+
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText("Repository error");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
 
             }
 

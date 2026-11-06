@@ -3,6 +3,7 @@ package org.example.submarineopticallinkconfigoptimization.repository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.example.submarineopticallinkconfigoptimization.entity.Link;
+import org.example.submarineopticallinkconfigoptimization.exception.RepositoryException;
 
 import java.sql.*;
 
@@ -56,7 +57,7 @@ public class LinkRepository {
             int rowsAffected = preparedStatement.executeUpdate();
 
             if(rowsAffected != 1 ){
-                throw new RuntimeException("An error has occurred while creating a link record in the db");
+                throw new RepositoryException("Unsuccessful single-row insert");
             }
 
             try(ResultSet generatedKeys = preparedStatement.getGeneratedKeys()){
@@ -65,12 +66,12 @@ public class LinkRepository {
                     link.setId(generatedKeys.getLong(1));
                 }
                 else{
-                    throw new RuntimeException("Link ID was not set");
+                    throw new RepositoryException("Link ID was not set");
                 }
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RepositoryException("An error has occurred while trying to create a link record in the db");
         }
 
     }
