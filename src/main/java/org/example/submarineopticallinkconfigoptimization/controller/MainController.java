@@ -1,15 +1,16 @@
 package org.example.submarineopticallinkconfigoptimization.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.controlsfx.control.PropertySheet;
 import org.example.submarineopticallinkconfigoptimization.Application;
+import org.example.submarineopticallinkconfigoptimization.dto.LinkResponseDTO;
 
 import java.io.IOException;
 
@@ -26,12 +27,27 @@ public class MainController {
     private Button newLinkButton;
     @FXML
     private TextField searchTextField;
+
+    private final ObservableList<LinkResponseDTO> links = FXCollections.observableArrayList();
+    private final FilteredList<LinkResponseDTO> filteredList = new FilteredList<>(links, link -> true);
+
     @FXML
-    private ListView<String> linksList;
+    private ListView<LinkResponseDTO> linksList;
 
     //Center
     @FXML
     private PropertySheet linkProperties;
+
+
+    @FXML
+    public void initialize(){
+
+        linksList.setItems(filteredList);
+        searchTextField.textProperty().addListener((obs,oldValue,newValue)->
+                filteredList.setPredicate(link -> link.getLinkName().toLowerCase().contains(searchTextField.getText().toLowerCase()))
+        );
+
+    }
 
 
 

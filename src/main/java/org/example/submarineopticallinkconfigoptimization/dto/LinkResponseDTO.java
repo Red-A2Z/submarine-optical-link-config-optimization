@@ -72,4 +72,12 @@ public class LinkResponseDTO {
     // The final received power
     private double finalReceivedPower;
 
+
+    @Override
+    public String toString(){
+        return linkName;
+    }
+
+
+
 }
