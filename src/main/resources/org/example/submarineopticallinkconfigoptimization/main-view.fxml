@@ -3,7 +3,6 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import org.controlsfx.control.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.submarineopticallinkconfigoptimization.controller.MainController">
    <top>
@@ -37,11 +36,4 @@
          </padding>
       </VBox>
    </left>
-   <center>
-      <SplitPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <items>
-            <PropertySheet />
-         </items>
-      </SplitPane>
-   </center>
 </BorderPane>

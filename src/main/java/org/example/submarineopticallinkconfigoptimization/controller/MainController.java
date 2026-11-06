@@ -34,10 +34,6 @@ public class MainController {
     @FXML
     private ListView<LinkResponseDTO> linksList;
 
-    //Center
-    @FXML
-    private PropertySheet linkProperties;
-
 
     @FXML
     public void initialize(){
