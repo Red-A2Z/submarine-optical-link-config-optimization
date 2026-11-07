@@ -4,6 +4,7 @@ import com.dlsc.formsfx.model.structure.*;
 import com.dlsc.formsfx.view.renderer.FormRenderer;
 // You must have a license before using Gurobi
 //// import com.gurobi.gurobi.GRBException;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -31,10 +32,20 @@ public class LinkFormController {
 
     private LinkRequestDTO linkRequestDTO;
 
+    private final MainController mainController = new MainController();
     private final LinkService linkService = new LinkService();
     private final OjAlgoCalculationsService ojAlgoCalculationsService= new OjAlgoCalculationsService();
     // You must have a license before using Gurobi
     //// private final GurobiCalculationsService gurobiCalculationsService = new GurobiCalculationsService();
+
+    private Stage linkFormStage;
+    private ObservableList<LinkResponseDTO> links;
+
+
+    public LinkFormController(Stage linkFormStage, ObservableList<LinkResponseDTO> links){
+        this.linkFormStage = linkFormStage;
+        this.links = links;
+    }
 
 
 
@@ -143,21 +154,26 @@ public class LinkFormController {
                 LinkResponseDTO linkResponseDTO = ojAlgoCalculationsService.calculate(linkRequestDTO);
 
                 if(linkResponseDTO == null){ // No solution found
+
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setHeaderText("No solution found");
                     alert.setContentText("We couldn't find a solution based on the input you provided.");
                     alert.showAndWait();
-                }else{
+
+                }else{//Positive case
+
 
                     System.out.println("d = "+linkResponseDTO.getDistanceBetweenAmplifiers());
                     System.out.println("n = "+linkResponseDTO.getNumberOfAmplifiers());
 
-                    //Positive case
                     try{
                         openLinkDetails(linkResponseDTO);
                     }catch (IOException e){
                         System.out.println("Error while trying to show Link Details");
                     }
+
+                    linkFormStage.close();
+                    links.add(linkResponseDTO);
 
                 }
 

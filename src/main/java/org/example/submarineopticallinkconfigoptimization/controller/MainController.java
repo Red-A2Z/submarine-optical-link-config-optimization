@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import org.controlsfx.control.PropertySheet;
 import org.example.submarineopticallinkconfigoptimization.Application;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkResponseDTO;
 
@@ -63,6 +62,7 @@ public class MainController {
         Stage linkFormStage = new Stage();
 
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("link-form-view.fxml"));
+        fxmlLoader.setController(new LinkFormController(linkFormStage,links));
         Scene linkFormScene = new Scene(fxmlLoader.load());
         linkFormStage.setScene(linkFormScene);
         linkFormStage.show();
