@@ -10,7 +10,7 @@ import java.sql.*;
 public class LinkRepository {
 
 
-    private final String url = "jdbc:postgresql://localhost:5432/postgres/link_db";
+    private final String url = "jdbc:postgresql://localhost:5432/link_db";
     private final String username = "postgres";
     private final String password = "123456";
 
