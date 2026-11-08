@@ -10,8 +10,11 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.example.submarineopticallinkconfigoptimization.Application;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkResponseDTO;
+import org.example.submarineopticallinkconfigoptimization.exception.RepositoryException;
+import org.example.submarineopticallinkconfigoptimization.service.LinkService;
 
 import java.io.IOException;
+import java.util.List;
 
 public class MainController {
 
@@ -34,6 +37,11 @@ public class MainController {
     private ListView<LinkResponseDTO> linksList;
 
 
+
+    private LinkService linkService = new LinkService();
+
+
+
     @FXML
     public void initialize(){
 
@@ -41,6 +49,16 @@ public class MainController {
         searchTextField.textProperty().addListener((obs,oldValue,newValue)->
                 filteredList.setPredicate(link -> link.getLinkName().toLowerCase().contains(searchTextField.getText().toLowerCase()))
         );
+
+        try{// Populate "links" with DB records
+            List<LinkResponseDTO> recordsListResponseDTO = linkService.getAllRecords();
+            links.addAll(recordsListResponseDTO);
+        }catch(RepositoryException e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Database Error");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
 
     }
 

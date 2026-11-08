@@ -1,11 +1,12 @@
 package org.example.submarineopticallinkconfigoptimization.repository;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import org.example.submarineopticallinkconfigoptimization.entity.Link;
 import org.example.submarineopticallinkconfigoptimization.exception.RepositoryException;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LinkRepository {
 
@@ -80,9 +81,9 @@ public class LinkRepository {
 
 
 
-    public ObservableList<Link> getAllRecords(){
+    public List<Link> getAllRecords(){
 
-        ObservableList<Link> records = FXCollections.observableArrayList();
+        List<Link> records = new ArrayList<>();
 
         String sql = "SELECT * FROM link;";
 

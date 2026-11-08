@@ -3,11 +3,14 @@ package org.example.submarineopticallinkconfigoptimization.service;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkRequestDTO;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkResponseDTO;
 import org.example.submarineopticallinkconfigoptimization.entity.Link;
+import org.example.submarineopticallinkconfigoptimization.repository.LinkRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LinkService {
+
+    LinkRepository linkRepository = new LinkRepository();
 
 
 
@@ -124,6 +127,22 @@ public class LinkService {
 
     }
 
+
+
+
+    public List<LinkResponseDTO> getAllRecords(){
+
+        List<LinkResponseDTO> recordsListResponseDTO = new ArrayList<>();
+        List<Link> records = linkRepository.getAllRecords();
+
+        for(Link record: records){
+            recordsListResponseDTO.add(mapToResponseDto(record));
+        }
+
+        return recordsListResponseDTO;
+
+
+    }
 
 
 }
