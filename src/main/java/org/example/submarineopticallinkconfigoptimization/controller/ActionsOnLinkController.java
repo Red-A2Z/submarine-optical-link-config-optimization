@@ -12,16 +12,16 @@ public class ActionsOnLinkController {
     @FXML
     private TextArea linkDescriptionTextArea;
 
-    private final LinkResponseDTO linkResponseDTO;
+    private final LinkResponseDTO selectedLink;
 
-    public ActionsOnLinkController(LinkResponseDTO linkResponseDTO) {
-        this.linkResponseDTO = linkResponseDTO;
+    public ActionsOnLinkController(LinkResponseDTO selectedLink) {
+        this.selectedLink = selectedLink;
     }
 
     public void initialize(){
 
-        linkNameLabel.setText(linkResponseDTO.getLinkName());
-        linkDescriptionTextArea.setText(linkResponseDTO.getLinkDescription());
+        linkNameLabel.setText(selectedLink.getLinkName());
+        linkDescriptionTextArea.setText(selectedLink.getLinkDescription());
 
     }
 
