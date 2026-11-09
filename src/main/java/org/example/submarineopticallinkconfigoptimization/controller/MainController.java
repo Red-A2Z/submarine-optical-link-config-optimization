@@ -30,6 +30,10 @@ public class MainController {
     @FXML
     private TextField searchTextField;
 
+    //Center
+    @FXML
+    private ScrollPane centerScrollPane;
+
     private final ObservableList<LinkResponseDTO> links = FXCollections.observableArrayList();
     private final FilteredList<LinkResponseDTO> filteredList = new FilteredList<>(links, link -> true);
 
@@ -44,6 +48,15 @@ public class MainController {
 
     @FXML
     public void initialize(){
+
+        try{
+            noLinkIsSelected();
+        }catch (IOException e){
+            System.out.println("Error while running noLinkIsSelected()");
+            System.out.println(e.getMessage());
+
+        };
+
 
         linksList.setItems(filteredList);
         searchTextField.textProperty().addListener((obs,oldValue,newValue)->
@@ -69,7 +82,17 @@ public class MainController {
     @FXML
     protected void mouseClickedOnListView(){
 
-        System.out.println("Clicked !!!!!");
+
+        LinkResponseDTO selectedLink = linksList.getSelectionModel().getSelectedItem();
+        if (selectedLink != null){
+            try{
+                aLinkIsSelected(selectedLink);
+            }catch (IOException e){
+                System.out.println("Error while running aLinkIsSelected()");
+                System.out.println(e.getMessage());
+            };
+
+        }
 
     }
 
@@ -87,4 +110,25 @@ public class MainController {
 
 
     }
+
+
+    private void noLinkIsSelected() throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("select-a-link-view.fxml"));
+        centerScrollPane.setContent(fxmlLoader.load());
+
+    }
+
+
+    private void aLinkIsSelected(LinkResponseDTO selectedLink) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("actions-on-link-view.fxml"));
+        fxmlLoader.setController(new ActionsOnLinkController(selectedLink));
+        centerScrollPane.setContent(fxmlLoader.load());
+    }
+
+
+
+
+
 }
