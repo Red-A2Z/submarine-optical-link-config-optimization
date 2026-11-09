@@ -119,8 +119,8 @@ public class LinkFormController {
     }
 
 
-    @FXML
-    protected void performCalculations(){
+
+    private void performCalculations(){
 
         linkForm.persist();
 
