@@ -1,7 +1,9 @@
 package org.example.submarineopticallinkconfigoptimization.controller;
 
 import com.dlsc.formsfx.model.structure.*;
+import com.dlsc.formsfx.model.validators.CustomValidator;
 import com.dlsc.formsfx.model.validators.RegexValidator;
+import com.dlsc.formsfx.model.validators.StringLengthValidator;
 import com.dlsc.formsfx.view.renderer.FormRenderer;
 // You must have a license before using Gurobi
 //// import com.gurobi.gurobi.GRBException;
@@ -19,6 +21,7 @@ import org.example.submarineopticallinkconfigoptimization.dto.LinkResponseDTO;
 import org.example.submarineopticallinkconfigoptimization.exception.RepositoryException;
 import org.example.submarineopticallinkconfigoptimization.service.LinkService;
 import org.example.submarineopticallinkconfigoptimization.service.OjAlgoCalculationsService;
+import org.example.submarineopticallinkconfigoptimization.validators.StringInputValidator;
 
 import java.io.IOException;
 import java.util.List;
@@ -61,11 +64,11 @@ public class LinkFormController {
 
         Field<StringField> field_1 = Field.ofStringType(linkRequestDTO.getLinkName())
                 .label("Link name:")
-                .validate(RegexValidator.forPattern(".*\\S.*","Link name must be at least one non-whitespace character long."));
+                .validate(new StringInputValidator(100,"Max 100 characters, with at least one non-whitespace character"));
 
         Field<StringField> field_2 = Field.ofStringType(linkRequestDTO.getLinkDescription())
                 .label("Link description:")
-                .validate(RegexValidator.forPattern(".*\\S.*","Link description must be at least one non-whitespace character long."));
+                .validate(new StringInputValidator(500,"Max 500 characters, with at least one non-whitespace character"));
 
         Field<DoubleField> field_3 = Field.ofDoubleType(linkRequestDTO.getLinkLength())
                 .label("Length of the link (km):");
