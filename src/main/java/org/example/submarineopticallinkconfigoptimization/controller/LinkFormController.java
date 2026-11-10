@@ -180,8 +180,9 @@ public class LinkFormController {
                             System.out.println("Error while trying to show Link Details");
                         }
 
-                        linkFormStage.close();
                         links.add(linkResponseDTO);
+                        linkFormStage.close();
+
 
                     }
 
