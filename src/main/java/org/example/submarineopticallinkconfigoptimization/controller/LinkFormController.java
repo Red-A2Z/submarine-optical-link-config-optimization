@@ -1,6 +1,7 @@
 package org.example.submarineopticallinkconfigoptimization.controller;
 
 import com.dlsc.formsfx.model.structure.*;
+import com.dlsc.formsfx.model.validators.RegexValidator;
 import com.dlsc.formsfx.view.renderer.FormRenderer;
 // You must have a license before using Gurobi
 //// import com.gurobi.gurobi.GRBException;
@@ -59,10 +60,12 @@ public class LinkFormController {
         // Create the Fields of the Form
 
         Field<StringField> field_1 = Field.ofStringType(linkRequestDTO.getLinkName())
-                .label("Link name:");
+                .label("Link name:")
+                .validate(RegexValidator.forPattern(".*\\S.*","Link name must be at least one non-whitespace character long."));
 
         Field<StringField> field_2 = Field.ofStringType(linkRequestDTO.getLinkDescription())
-                .label("Link description:");
+                .label("Link description:")
+                .validate(RegexValidator.forPattern(".*\\S.*","Link description must be at least one non-whitespace character long."));
 
         Field<DoubleField> field_3 = Field.ofDoubleType(linkRequestDTO.getLinkLength())
                 .label("Length of the link (km):");

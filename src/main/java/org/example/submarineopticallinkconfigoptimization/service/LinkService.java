@@ -19,14 +19,6 @@ public class LinkService {
 
         List<String> listOfMessages = new ArrayList<>();
 
-        if(!linkRequestDTO.getLinkName().get().replaceAll("\\s","").matches(".+")){
-            listOfMessages.add("Link name must be at least one non-whitespace character long.");
-        }
-
-        if(!linkRequestDTO.getLinkDescription().get().replaceAll("\\s","").matches(".+")){
-            listOfMessages.add("Link description must be at least one non-whitespace character long.");
-        }
-
         if(!(linkRequestDTO.getLinkLength().get()>0)){
             listOfMessages.add("Length of the link must be greater than 0.");
         }
