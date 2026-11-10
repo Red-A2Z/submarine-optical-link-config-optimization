@@ -128,71 +128,82 @@ public class LinkFormController {
 
     private void performCalculations(){
 
-        linkForm.persist();
+        if(linkForm.isValid()){
 
-        // call verification function from service
-        List<String> listOfMessages= linkService.verifyFormInput(linkRequestDTO);
+            linkForm.persist();
 
-        // if input is invalid :  alert
-        if(!listOfMessages.isEmpty()){
+            // call verification function from service
+            List<String> listOfMessages= linkService.verifyFormInput(linkRequestDTO);
 
-            StringBuilder alertContent = new StringBuilder();
-            for (String message : listOfMessages){
-                alertContent.append(message).append("\n").append("\n");
-            }
+            // if input is invalid :  alert
+            if(!listOfMessages.isEmpty()){
 
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setHeaderText("Invalid input");
-            alert.setContentText(alertContent.toString());
-            alert.showAndWait();
-
-        }else{
-
-            System.out.println("Input is valid");
-
-            // You must have a license before using Gurobi
-            // If you want to use Gurobi, wrap the code in a try-catch block to handle the GRBException
-            //// LinkResponseDTO linkResponseDTO = gurobiCalculationsService.calculate(linkRequestDTO);
-
-
-            try{
-
-                LinkResponseDTO linkResponseDTO = ojAlgoCalculationsService.calculate(linkRequestDTO);
-
-                if(linkResponseDTO == null){ // No solution found
-
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setHeaderText("No solution found");
-                    alert.setContentText("We couldn't find a solution based on the input you provided.");
-                    alert.showAndWait();
-
-                }else{//Positive case
-
-
-                    System.out.println("d = "+linkResponseDTO.getDistanceBetweenAmplifiers());
-                    System.out.println("n = "+linkResponseDTO.getNumberOfAmplifiers());
-
-                    try{
-                        openLinkDetails(linkResponseDTO);
-                    }catch (IOException e){
-                        System.out.println("Error while trying to show Link Details");
-                    }
-
-                    linkFormStage.close();
-                    links.add(linkResponseDTO);
-
+                StringBuilder alertContent = new StringBuilder();
+                for (String message : listOfMessages){
+                    alertContent.append(message).append("\n").append("\n");
                 }
 
-            }catch (RepositoryException e) {
-
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setHeaderText("Repository error");
-                alert.setContentText(e.getMessage());
+                alert.setHeaderText("Invalid input");
+                alert.setContentText(alertContent.toString());
                 alert.showAndWait();
+
+            }else{
+
+                System.out.println("Input is valid");
+
+                // You must have a license before using Gurobi
+                // If you want to use Gurobi, wrap the code in a try-catch block to handle the GRBException
+                //// LinkResponseDTO linkResponseDTO = gurobiCalculationsService.calculate(linkRequestDTO);
+
+
+                try{
+
+                    LinkResponseDTO linkResponseDTO = ojAlgoCalculationsService.calculate(linkRequestDTO);
+
+                    if(linkResponseDTO == null){ // No solution found
+
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setHeaderText("No solution found");
+                        alert.setContentText("We couldn't find a solution based on the input you provided.");
+                        alert.showAndWait();
+
+                    }else{//Positive case
+
+
+                        System.out.println("d = "+linkResponseDTO.getDistanceBetweenAmplifiers());
+                        System.out.println("n = "+linkResponseDTO.getNumberOfAmplifiers());
+
+                        try{
+                            openLinkDetails(linkResponseDTO);
+                        }catch (IOException e){
+                            System.out.println("Error while trying to show Link Details");
+                        }
+
+                        linkFormStage.close();
+                        links.add(linkResponseDTO);
+
+                    }
+
+                }catch (RepositoryException e) {
+
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setHeaderText("Repository error");
+                    alert.setContentText(e.getMessage());
+                    alert.showAndWait();
+
+                }
 
             }
 
         }
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Invalid input");
+            alert.setContentText("Input data is invalid");
+            alert.showAndWait();
+        }
+
 
     }
 
