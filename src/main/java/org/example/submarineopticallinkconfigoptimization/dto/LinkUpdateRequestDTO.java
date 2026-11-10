@@ -1,8 +1,14 @@
 package org.example.submarineopticallinkconfigoptimization.dto;
 
+import javafx.beans.property.StringProperty;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class LinkUpdateRequestDTO {
 
     private long id;
-    private String linkName;
-    private String linkDescription;
+    private StringProperty linkName;
+    private StringProperty linkDescription;
 }
