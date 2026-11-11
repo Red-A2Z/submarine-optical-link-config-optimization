@@ -15,6 +15,7 @@ import org.example.submarineopticallinkconfigoptimization.service.LinkService;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 public class MainController {
 
@@ -87,7 +88,14 @@ public class MainController {
         if (selectedLink != null){
             try{
                 aLinkIsSelected(selectedLink);
-                selectedLink.getLinkName().addListener(((observable, oldValue, newValue) -> linksList.refresh()));
+                selectedLink.getLinkName().addListener(((observable, oldValue, newValue) -> {
+                    linksList.refresh(); // this one for update
+                    if(Objects.equals(newValue, "")){// this one for delete
+                        links.remove(selectedLink);
+                    } else {
+                        linksList.refresh(); // this one for update
+                    }
+                }));
             }catch (IOException e){
                 System.out.println("Error while running aLinkIsSelected()");
                 System.out.println(e.getMessage());
@@ -124,7 +132,7 @@ public class MainController {
     private void aLinkIsSelected(LinkResponseDTO selectedLink) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("actions-on-link-view.fxml"));
-        fxmlLoader.setController(new ActionsOnLinkController(selectedLink));
+        fxmlLoader.setController(new ActionsOnLinkController(selectedLink,centerScrollPane));
         centerScrollPane.setContent(fxmlLoader.load());
     }
 

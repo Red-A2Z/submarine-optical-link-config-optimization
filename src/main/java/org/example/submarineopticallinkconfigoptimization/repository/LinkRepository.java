@@ -202,6 +202,34 @@ public class LinkRepository {
 
 
 
+    public void deleteLink(long linkId){
+
+        String sql = "DELETE from link WHERE id =?";
+
+
+        try(
+                Connection connection = DriverManager.getConnection(url,username,password);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ){
+
+            preparedStatement.setLong(1,linkId);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if(rowsAffected!=1){
+                throw new RepositoryException("Unsuccessful single-row delete");
+            }
+
+
+
+        }catch (SQLException e){
+            throw new RepositoryException("A DB error has occurred while trying to delete a link");
+        }
+
+    }
+
+
+
 
 
 

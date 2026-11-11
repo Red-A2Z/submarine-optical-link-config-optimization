@@ -156,4 +156,11 @@ public class LinkService {
     }
 
 
+    public void deleteLink(long linkId){
+
+        linkRepository.deleteLink(linkId);
+
+    }
+
+
 }
