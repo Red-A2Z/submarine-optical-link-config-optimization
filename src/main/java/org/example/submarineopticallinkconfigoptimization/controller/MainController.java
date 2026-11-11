@@ -60,7 +60,7 @@ public class MainController {
 
         linksList.setItems(filteredList);
         searchTextField.textProperty().addListener((obs,oldValue,newValue)->
-                filteredList.setPredicate(link -> link.getLinkName().toLowerCase().contains(searchTextField.getText().toLowerCase()))
+                filteredList.setPredicate(link -> link.getLinkName().get().toLowerCase().contains(searchTextField.getText().toLowerCase()))
         );
 
         try{// Populate "links" with DB records
@@ -87,6 +87,7 @@ public class MainController {
         if (selectedLink != null){
             try{
                 aLinkIsSelected(selectedLink);
+                selectedLink.getLinkName().addListener(((observable, oldValue, newValue) -> linksList.refresh()));
             }catch (IOException e){
                 System.out.println("Error while running aLinkIsSelected()");
                 System.out.println(e.getMessage());

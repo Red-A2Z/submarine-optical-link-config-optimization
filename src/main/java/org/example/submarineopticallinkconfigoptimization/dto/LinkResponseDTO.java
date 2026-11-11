@@ -1,6 +1,7 @@
 package org.example.submarineopticallinkconfigoptimization.dto;
 
 
+import javafx.beans.property.StringProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,10 +18,10 @@ public class LinkResponseDTO {
      */
 
     // Link name
-    private String linkName;
+    private StringProperty linkName;
 
     // Link description
-    private String linkDescription;
+    private StringProperty linkDescription;
 
     // Length of the link (km)
     private double linkLength;
@@ -75,7 +76,7 @@ public class LinkResponseDTO {
 
     @Override
     public String toString(){
-        return linkName;
+        return linkName.get();
     }
 
 

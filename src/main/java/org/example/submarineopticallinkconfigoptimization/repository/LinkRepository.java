@@ -1,9 +1,11 @@
 package org.example.submarineopticallinkconfigoptimization.repository;
 
 
+import org.example.submarineopticallinkconfigoptimization.dto.LinkUpdateRequestDTO;
 import org.example.submarineopticallinkconfigoptimization.entity.Link;
 import org.example.submarineopticallinkconfigoptimization.exception.RepositoryException;
 
+import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -129,6 +131,72 @@ public class LinkRepository {
         link.setFinalReceivedPower(resultSet.getDouble(17));
 
         return link;
+
+    }
+
+
+
+    public void updateLinkNameDescription(long id, String newName, String newDescription){
+        String sql = "";
+
+
+        if (newName!=null && newDescription!=null){
+            sql = """
+                    UPDATE link
+                    SET linkName=?, linkDescription=?
+                    WHERE id=?
+                    """;
+        } else if (newName==null && newDescription==null) {
+            return;
+            
+        } else if (newName!=null) {
+            sql = """
+                    UPDATE link
+                    SET linkName=?
+                    WHERE id=?
+                    """;
+
+        } else{
+            sql = """
+                    UPDATE link
+                    SET linkDescription=?
+                    WHERE id=?
+                    """;
+        }
+
+
+            try(
+
+                Connection connection = DriverManager.getConnection(url,username,password);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                ){
+
+
+                if (newName!=null && newDescription!=null){
+                    preparedStatement.setString(1,newName);
+                    preparedStatement.setString(2,newDescription);
+                    preparedStatement.setLong(3,id);
+
+                } else if (newDescription==null) {
+                    preparedStatement.setString(1,newName);
+                    preparedStatement.setLong(2,id);
+
+                } else{
+                    preparedStatement.setString(1,newDescription);
+                    preparedStatement.setLong(2,id);
+                }
+
+                int rowsAffected = preparedStatement.executeUpdate();
+
+                if(rowsAffected!=1){
+                    throw new RepositoryException("Unsuccessful single-row update");
+                }
+
+
+        } catch (SQLException e) {
+            throw new RepositoryException("A DB error has occurred while trying to update a link");
+        }
+
 
     }
 

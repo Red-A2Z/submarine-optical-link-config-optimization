@@ -35,11 +35,11 @@ public class LinkDetailsController {
 
     private Form staticInputFormBuilder(){
 
-        Field<StringField> staticInputField_1 = Field.ofStringType(linkResponseDTO.getLinkName())
+        Field<StringField> staticInputField_1 = Field.ofStringType(linkResponseDTO.getLinkName().get())
                 .label("Link name:")
                 .editable(false);
 
-        Field<StringField> staticInputField_2 = Field.ofStringType(linkResponseDTO.getLinkDescription())
+        Field<StringField> staticInputField_2 = Field.ofStringType(linkResponseDTO.getLinkDescription().get())
                 .label("Link description:")
                 .editable(false);
 

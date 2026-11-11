@@ -1,9 +1,6 @@
 package org.example.submarineopticallinkconfigoptimization.controller;
 
 import com.dlsc.formsfx.model.structure.*;
-import com.dlsc.formsfx.model.validators.CustomValidator;
-import com.dlsc.formsfx.model.validators.RegexValidator;
-import com.dlsc.formsfx.model.validators.StringLengthValidator;
 import com.dlsc.formsfx.view.renderer.FormRenderer;
 // You must have a license before using Gurobi
 //// import com.gurobi.gurobi.GRBException;

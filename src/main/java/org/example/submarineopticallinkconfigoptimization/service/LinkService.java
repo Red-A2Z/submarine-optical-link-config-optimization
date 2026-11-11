@@ -1,7 +1,9 @@
 package org.example.submarineopticallinkconfigoptimization.service;
 
+import javafx.beans.property.SimpleStringProperty;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkRequestDTO;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkResponseDTO;
+import org.example.submarineopticallinkconfigoptimization.dto.LinkUpdateRequestDTO;
 import org.example.submarineopticallinkconfigoptimization.entity.Link;
 import org.example.submarineopticallinkconfigoptimization.repository.LinkRepository;
 
@@ -96,8 +98,8 @@ public class LinkService {
         linkResponseDTO.setId(link.getId());
 
         //Input fields
-        linkResponseDTO.setLinkName(link.getLinkName());
-        linkResponseDTO.setLinkDescription(link.getLinkDescription());
+        linkResponseDTO.setLinkName(new SimpleStringProperty(link.getLinkName()));
+        linkResponseDTO.setLinkDescription(new SimpleStringProperty(link.getLinkDescription()));
         linkResponseDTO.setLinkLength(link.getLinkLength());
         linkResponseDTO.setLinkAttenuation(link.getLinkAttenuation());
         linkResponseDTO.setTransmitterOutputPower(link.getTransmitterOutputPower());
@@ -134,6 +136,23 @@ public class LinkService {
         return recordsListResponseDTO;
 
 
+    }
+
+
+
+
+    public void updateLinkNameDescription(LinkUpdateRequestDTO linkUpdateRequestDTO,boolean shouldUpdateName, boolean shouldUpdateDescription){
+
+
+        if(!shouldUpdateName && !shouldUpdateDescription){
+            System.out.println("No update required");
+        } else if (!shouldUpdateName) {
+            linkRepository.updateLinkNameDescription(linkUpdateRequestDTO.getId(),null,linkUpdateRequestDTO.getLinkDescription().get());
+        } else if (!shouldUpdateDescription) {
+            linkRepository.updateLinkNameDescription(linkUpdateRequestDTO.getId(),linkUpdateRequestDTO.getLinkName().get(),null);
+        }else {
+            linkRepository.updateLinkNameDescription(linkUpdateRequestDTO.getId(),linkUpdateRequestDTO.getLinkName().get(),linkUpdateRequestDTO.getLinkDescription().get());
+        }
     }
 
 
