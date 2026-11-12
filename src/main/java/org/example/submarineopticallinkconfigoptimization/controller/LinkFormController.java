@@ -28,10 +28,9 @@ public class LinkFormController {
     @FXML
     private VBox vBox;
 
-    private Button calculateButton;
     private Form linkForm;
 
-    private LinkRequestDTO linkRequestDTO;
+    private final LinkRequestDTO linkRequestDTO = new LinkRequestDTO();
 
     private final MainController mainController = new MainController();
     private final LinkService linkService = new LinkService();
@@ -39,8 +38,8 @@ public class LinkFormController {
     // You must have a license before using Gurobi
     //// private final GurobiCalculationsService gurobiCalculationsService = new GurobiCalculationsService();
 
-    private Stage linkFormStage;
-    private ObservableList<LinkResponseDTO> links;
+    private final Stage linkFormStage;
+    private final ObservableList<LinkResponseDTO> links;
 
 
     public LinkFormController(Stage linkFormStage, ObservableList<LinkResponseDTO> links){
@@ -53,8 +52,6 @@ public class LinkFormController {
     @FXML
     public void initialize(){
 
-        // Create a LinkRequestDTO Object
-        linkRequestDTO = new LinkRequestDTO();
 
 
         // Create the Fields of the Form
@@ -113,10 +110,10 @@ public class LinkFormController {
         ).title("New Link Form");
 
 
-        calculateButton =  new Button("Calculate");
+        Button calculateButton = new Button("Calculate");
         calculateButton.setOnAction(e->performCalculations());
 
-        vBox.getChildren().addAll(new FormRenderer(linkForm),calculateButton);
+        vBox.getChildren().addAll(new FormRenderer(linkForm), calculateButton);
 
 
     }

@@ -43,7 +43,7 @@ public class MainController {
 
 
 
-    private LinkService linkService = new LinkService();
+    private final LinkService linkService = new LinkService();
 
 
 
@@ -58,7 +58,7 @@ public class MainController {
             System.out.println("Error while running noLinkIsSelected()");
             System.out.println(e.getMessage());
 
-        };
+        }
 
 
         linksList.setItems(filteredList);
@@ -101,7 +101,7 @@ public class MainController {
             }catch (IOException e){
                 System.out.println("Error while running aLinkIsSelected()");
                 System.out.println(e.getMessage());
-            };
+            }
 
         }
 

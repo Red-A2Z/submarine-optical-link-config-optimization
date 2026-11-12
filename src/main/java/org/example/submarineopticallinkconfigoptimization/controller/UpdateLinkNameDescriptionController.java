@@ -32,8 +32,8 @@ public class UpdateLinkNameDescriptionController {
     private final LinkUpdateRequestDTO linkUpdateRequestDTO = new LinkUpdateRequestDTO();
     private final LinkService linkService = new LinkService();
 
-    private LinkResponseDTO selectedLink;
-    private Stage updateStage;
+    private final LinkResponseDTO selectedLink;
+    private final Stage updateStage;
 
     public UpdateLinkNameDescriptionController(LinkResponseDTO selectedLink, Stage updateStage){
         this.selectedLink=selectedLink;

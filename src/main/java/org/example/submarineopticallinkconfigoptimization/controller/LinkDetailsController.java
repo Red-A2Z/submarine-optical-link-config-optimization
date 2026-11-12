@@ -13,7 +13,7 @@ public class LinkDetailsController {
     @FXML
     VBox outputVbox;
 
-    LinkResponseDTO linkResponseDTO;
+    private final LinkResponseDTO linkResponseDTO;
 
 
     public LinkDetailsController(LinkResponseDTO linkResponseDTO){
