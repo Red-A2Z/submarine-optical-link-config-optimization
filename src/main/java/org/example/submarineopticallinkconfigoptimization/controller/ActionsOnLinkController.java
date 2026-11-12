@@ -24,6 +24,8 @@ public class ActionsOnLinkController {
     private Button updateButton;
     @FXML
     private Button deleteButton;
+    @FXML
+    private Button detailsButton;
 
     private final ScrollPane centerScrollPane;
 
@@ -44,6 +46,7 @@ public class ActionsOnLinkController {
 
         updateButton.setOnAction(event -> updateButtonClicked());
         deleteButton.setOnAction(event -> deleteButtonClicked());
+        detailsButton.setOnAction(event -> detailsButtonClicked());
 
     }
 
@@ -108,6 +111,29 @@ public class ActionsOnLinkController {
 
         }
 
+
+    }
+
+
+
+    private void detailsButtonClicked(){
+
+        try {
+
+            Stage linkDetailsStage =  new Stage();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("link-details-view.fxml"));
+            fxmlLoader.setController(new LinkDetailsController(selectedLink));
+
+            Scene linkFormScene =  new Scene(fxmlLoader.load());
+
+            linkDetailsStage.setScene(linkFormScene);
+            linkDetailsStage.show();
+
+        }catch (IOException e){
+            System.out.println("Error while trying to show Link Details");
+            System.out.println(e.getMessage());
+        }
 
     }
 

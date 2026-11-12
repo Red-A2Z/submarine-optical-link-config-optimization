@@ -21,7 +21,7 @@
       <Region layoutX="20.0" layoutY="112.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
          <children>
-            <Button mnemonicParsing="false" text="Details" HBox.hgrow="ALWAYS">
+            <Button fx:id="detailsButton" mnemonicParsing="false" text="Details" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="25.0" />
                </font>
