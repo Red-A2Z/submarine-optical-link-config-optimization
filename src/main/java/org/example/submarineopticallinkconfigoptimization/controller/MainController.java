@@ -50,6 +50,8 @@ public class MainController {
     @FXML
     public void initialize(){
 
+        newLinkButton.getStyleClass().addAll("btn","btn-primary");
+
         try{
             noLinkIsSelected();
         }catch (IOException e){

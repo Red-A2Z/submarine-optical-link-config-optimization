@@ -24,7 +24,7 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#openLinkForm" text="New Link" />
+            <Button fx:id="newLinkButton" mnemonicParsing="false" onAction="#openLinkForm" text="New Link" />
             <TextField fx:id="searchTextField" />
             <ListView fx:id="linksList" onMouseClicked="#mouseClickedOnListView" prefHeight="200.0" prefWidth="200.0" />
          </children>
