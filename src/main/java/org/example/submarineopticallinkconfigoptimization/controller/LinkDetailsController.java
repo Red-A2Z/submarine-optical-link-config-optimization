@@ -56,27 +56,27 @@ public class LinkDetailsController {
                 .editable(false);
 
         Field<DoubleField> staticInputField_6 = Field.ofDoubleType(linkResponseDTO.getMinReceivedPower())
-                .label("Minimum required received optical power (dBm):")
+                .label("Min required received optical power (dBm):")
                 .editable(false);
 
         Field<DoubleField> staticInputField_7 = Field.ofDoubleType(linkResponseDTO.getMinAmplifierGain())
-                .label("Minimum permissible gain per amplifier (dB):")
+                .label("Min permissible gain per amplifier (dB):")
                 .editable(false);
 
         Field<DoubleField> staticInputField_8 = Field.ofDoubleType(linkResponseDTO.getMaxAmplifierGain())
-                .label("Maximum permissible gain per amplifier (dB):")
+                .label("Max permissible gain per amplifier (dB):")
                 .editable(false);
 
         Field<DoubleField> staticInputField_9 = Field.ofDoubleType(linkResponseDTO.getMinAmplifierInputPower())
-                .label("Minimum input power for each amplifier (dBm):")
+                .label("Min input power for each amplifier (dBm):")
                 .editable(false);
 
         Field<DoubleField> staticInputField_10 = Field.ofDoubleType(linkResponseDTO.getMaxAmplifierOutputPower())
-                .label("Maximum output power of each amplifiers (dBm):")
+                .label("Max output power of each amplifier (dBm):")
                 .editable(false);
 
         Field<IntegerField> staticInputField_11 = Field.ofIntegerType(linkResponseDTO.getMaxNumberOfAmplifiers())
-                .label("Maximum number of amplifiers:")
+                .label("Max number of amplifiers:")
                 .editable(false);
 
 

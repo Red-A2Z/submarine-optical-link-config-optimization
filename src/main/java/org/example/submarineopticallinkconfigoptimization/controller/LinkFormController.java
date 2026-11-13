@@ -73,22 +73,22 @@ public class LinkFormController {
                 .label("Transmitter output power (dBm):");
 
         Field<DoubleField> field_6 = Field.ofDoubleType(linkRequestDTO.getMinReceivedPower())
-                .label("Minimum required received optical power (dBm):");
+                .label("Min required received optical power (dBm):");
 
         Field<DoubleField> field_7 = Field.ofDoubleType(linkRequestDTO.getMinAmplifierGain())
-                .label("Minimum permissible gain per amplifier (dB):");
+                .label("Min permissible gain per amplifier (dB):");
 
         Field<DoubleField> field_8 = Field.ofDoubleType(linkRequestDTO.getMaxAmplifierGain())
-                .label("Maximum permissible gain per amplifier (dB):");
+                .label("Max permissible gain per amplifier (dB):");
 
         Field<DoubleField> field_9 = Field.ofDoubleType(linkRequestDTO.getMinAmplifierInputPower())
-                .label("Minimum input power for each amplifier (dBm):");
+                .label("Min input power for each amplifier (dBm):");
 
         Field<DoubleField> field_10 = Field.ofDoubleType(linkRequestDTO.getMaxAmplifierOutputPower())
-                .label("Maximum output power of each amplifiers (dBm):");
+                .label("Max output power of each amplifier (dBm):");
 
         Field<IntegerField> field_11 = Field.ofIntegerType(linkRequestDTO.getMaxNumberOfAmplifiers())
-                .label("Maximum number of amplifiers:");
+                .label("Max number of amplifiers:");
 
 
         // Create the Form
