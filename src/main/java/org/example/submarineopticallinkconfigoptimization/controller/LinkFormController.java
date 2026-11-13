@@ -32,7 +32,6 @@ public class LinkFormController {
 
     private final LinkRequestDTO linkRequestDTO = new LinkRequestDTO();
 
-    private final MainController mainController = new MainController();
     private final LinkService linkService = new LinkService();
     private final OjAlgoCalculationsService ojAlgoCalculationsService= new OjAlgoCalculationsService();
     // You must have a license before using Gurobi
