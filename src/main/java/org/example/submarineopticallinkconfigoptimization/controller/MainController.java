@@ -115,7 +115,7 @@ public class MainController {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("link-form-view.fxml"));
         fxmlLoader.setController(new LinkFormController(linkFormStage,links));
-        Scene linkFormScene = new Scene(fxmlLoader.load());
+        Scene linkFormScene = new Scene(fxmlLoader.load(),1700,560);
         linkFormStage.setScene(linkFormScene);
         linkFormStage.show();
 
