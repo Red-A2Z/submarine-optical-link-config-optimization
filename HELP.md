@@ -47,7 +47,7 @@ In order design a simple yet effective model, we considered the following assump
 - The gain that the amplifier has to provide (**Individual gain of each amplifier**) must be between the **Minimum permissible gain per amplifier** and the **Maximum permissible gain per amplifier**.
 - The **Final received power** must be greater than or equal to the **Minimum required received optical power**.
 
-### 6. Functionalities
+## 6. Functionalities
 - Input validation.
 - Calculation.
 - In the case of successful calculations, link record creation in the database.
@@ -55,9 +55,44 @@ In order design a simple yet effective model, we considered the following assump
 - Link name and/or description update.
 - Link record removal from the database.
 
-### 7. How-to guide
+## 7. How-to guide
+To use this app:
+- Replace the value of the url field inside **LinkRepository.java** with the link of your PostgreSQL database. 
+- Create a table inside that database using the script in the section **"9. Database table script"**.
+- Run **Launcher.java** from your IDE.
 
 
+## 8. Main technical stack
+- Java, JavaFX & FXML 
+- Formsfx & Bootstrapfx
+- Lombok
+- OjAlgo
+- Gurobi (Not tested: required a license. The current app logic uses OjAlgo instead)
+- PostgreSQL & JDBC
+- Maven
+
+
+## 9. Database table script
+
+create table link (<br>
+id BIGINT generated always as identity primary key,<br>
+linkName TEXT not null,<br>
+linkDescription TEXT not null,<br>
+linkLength FLOAT8 not null,<br>
+linkAttenuation FLOAT8 not null,<br>
+transmitterOutputPower FLOAT8 not null,<br>
+minReceivedPower FLOAT8 not null,<br>
+minAmplifierGain FLOAT8 not null,<br>
+maxAmplifierGain FLOAT8 not null,<br>
+minAmplifierInputPower FLOAT8 not null,<br>
+maxAmplifierOutputPower FLOAT8 not null,<br>
+maxNumberOfAmplifiers INTEGER not null,<br>
+numberOfAmplifiers INTEGER not null,<br>
+distanceBetweenAmplifiers FLOAT8 not null,<br>
+amplifierGain FLOAT8 not null,<br>
+amplifierInputPower FLOAT8 not null,<br>
+finalReceivedPower FLOAT8 not null<br>
+);
 
 
 
