@@ -59,7 +59,7 @@ public class ActionsOnLinkController {
             Stage updateStage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("update-link-name-description-view.fxml"));
             fxmlLoader.setController(new UpdateLinkNameDescriptionController(selectedLink,updateStage));
-            Scene updateScene = new Scene(fxmlLoader.load());
+            Scene updateScene = new Scene(fxmlLoader.load(),800,400);
             updateStage.setScene(updateScene);
             updateStage.show();
 
