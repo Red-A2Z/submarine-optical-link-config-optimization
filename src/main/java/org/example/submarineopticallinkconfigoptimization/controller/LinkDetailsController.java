@@ -9,9 +9,7 @@ import org.example.submarineopticallinkconfigoptimization.dto.LinkResponseDTO;
 public class LinkDetailsController {
 
     @FXML
-    VBox inputVbox;
-    @FXML
-    VBox outputVbox;
+    VBox vbox;
 
     private final LinkResponseDTO linkResponseDTO;
 
@@ -25,8 +23,10 @@ public class LinkDetailsController {
     @FXML
     public void initialize(){
 
-        inputVbox.getChildren().add(new FormRenderer(staticInputFormBuilder()));
-        outputVbox.getChildren().add(new FormRenderer(staticOutputFormBuilder()));
+        FormRenderer form1 = new FormRenderer(staticOutputFormBuilder());
+        form1.setPrefWidth(50);
+        vbox.getChildren().add(1,form1);
+        vbox.getChildren().add(3,new FormRenderer(staticInputFormBuilder()));
 
     }
 
@@ -108,7 +108,7 @@ public class LinkDetailsController {
                 .editable(false);
 
         Field<DoubleField> staticOutputField_2 = Field.ofDoubleType(linkResponseDTO.getDistanceBetweenAmplifiers())
-                .label("The distance between two successive amplifiers (km):")
+                .label("The dist. between 2 successive amplifiers (km):")
                 .editable(false);
 
         Field<DoubleField> staticOutputField_3 = Field.ofDoubleType(linkResponseDTO.getAmplifierGain())

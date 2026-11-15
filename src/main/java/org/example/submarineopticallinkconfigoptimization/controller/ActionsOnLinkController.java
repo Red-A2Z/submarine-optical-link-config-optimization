@@ -125,7 +125,7 @@ public class ActionsOnLinkController {
             FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("link-details-view.fxml"));
             fxmlLoader.setController(new LinkDetailsController(selectedLink));
 
-            Scene linkFormScene =  new Scene(fxmlLoader.load());
+            Scene linkFormScene =  new Scene(fxmlLoader.load(),1824,900);
 
             linkDetailsStage.setScene(linkFormScene);
             linkDetailsStage.show();
