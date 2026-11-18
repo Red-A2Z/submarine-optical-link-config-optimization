@@ -2,8 +2,10 @@ package org.example.submarineopticallinkconfigoptimization.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.submarineopticallinkconfigoptimization.Application;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkResponseDTO;
@@ -14,6 +16,9 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class ActionsOnLinkController {
+
+    @FXML
+    private VBox vBox;
 
     @FXML
     private Label linkNameLabel;
@@ -40,6 +45,14 @@ public class ActionsOnLinkController {
     }
 
     public void initialize(){
+
+        vBox.minHeightProperty().bind(
+                centerScrollPane.viewportBoundsProperty().map(Bounds::getHeight)
+        );
+
+        vBox.minWidthProperty().bind(
+                centerScrollPane.viewportBoundsProperty().map(Bounds::getWidth)
+        );
 
         linkNameLabel.textProperty().bind(selectedLink.getLinkName());
         linkDescriptionTextArea.textProperty().bind(selectedLink.getLinkDescription());

@@ -50,8 +50,6 @@ public class MainController {
     @FXML
     public void initialize(){
 
-        newLinkButton.getStyleClass().addAll("btn","btn-primary");
-
         try{
             noLinkIsSelected();
         }catch (IOException e){
@@ -126,6 +124,7 @@ public class MainController {
     private void noLinkIsSelected() throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("fxml/select-a-link-view.fxml"));
+        fxmlLoader.setController(new SelectALinkController(centerScrollPane));
         centerScrollPane.setContent(fxmlLoader.load());
 
     }
