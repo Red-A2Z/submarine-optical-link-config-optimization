@@ -3,37 +3,16 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="50.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="linkNameLabel" text="Label">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
-      <TextArea fx:id="linkDescriptionTextArea" editable="false" prefHeight="200.0" prefWidth="200.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextArea>
+      <Label fx:id="linkNameLabel" text="Label"/>
+      <TextArea fx:id="linkDescriptionTextArea" editable="false" prefHeight="200.0" prefWidth="200.0"/>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
          <children>
-            <Button fx:id="detailsButton" mnemonicParsing="false" text="Details" HBox.hgrow="ALWAYS">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
-            <Button fx:id="updateButton" mnemonicParsing="false" text="Update" HBox.hgrow="ALWAYS">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
-            <Button fx:id="deleteButton" mnemonicParsing="false" text="Delete" HBox.hgrow="ALWAYS">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
+            <Button fx:id="detailsButton" mnemonicParsing="false" text="Details" HBox.hgrow="ALWAYS"/>
+            <Button fx:id="updateButton" mnemonicParsing="false" text="Update" HBox.hgrow="ALWAYS"/>
+            <Button fx:id="deleteButton" mnemonicParsing="false" text="Delete" HBox.hgrow="ALWAYS"/>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
