@@ -57,7 +57,7 @@ public class ActionsOnLinkController {
         try{
 
             Stage updateStage = new Stage();
-            FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("update-link-name-description-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("fxml/update-link-name-description-view.fxml"));
             fxmlLoader.setController(new UpdateLinkNameDescriptionController(selectedLink,updateStage));
             Scene updateScene = new Scene(fxmlLoader.load(),800,400);
             updateStage.setScene(updateScene);
@@ -93,7 +93,7 @@ public class ActionsOnLinkController {
 
 
                 try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("select-a-link-view.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("fxml/select-a-link-view.fxml"));
                     centerScrollPane.setContent(fxmlLoader.load());
                     selectedLink.getLinkName().set(""); // this line is to trigger the links list refresh
                 }catch (IOException e){
@@ -122,7 +122,7 @@ public class ActionsOnLinkController {
 
             Stage linkDetailsStage =  new Stage();
 
-            FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("link-details-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("fxml/link-details-view.fxml"));
             fxmlLoader.setController(new LinkDetailsController(selectedLink));
 
             Scene linkFormScene =  new Scene(fxmlLoader.load(),1824,900);

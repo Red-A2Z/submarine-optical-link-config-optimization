@@ -208,7 +208,7 @@ public class LinkFormController {
 
         Stage linkDetailsStage =  new Stage();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("link-details-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("fxml/link-details-view.fxml"));
         fxmlLoader.setController(new LinkDetailsController(linkResponseDTO));
 
         Scene linkFormScene =  new Scene(fxmlLoader.load(),1824,900);

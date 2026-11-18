@@ -113,7 +113,7 @@ public class MainController {
 
         Stage linkFormStage = new Stage();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("link-form-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("fxml/link-form-view.fxml"));
         fxmlLoader.setController(new LinkFormController(linkFormStage,links));
         Scene linkFormScene = new Scene(fxmlLoader.load(),1700,560);
         linkFormStage.setScene(linkFormScene);
@@ -125,7 +125,7 @@ public class MainController {
 
     private void noLinkIsSelected() throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("select-a-link-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("fxml/select-a-link-view.fxml"));
         centerScrollPane.setContent(fxmlLoader.load());
 
     }
@@ -133,7 +133,7 @@ public class MainController {
 
     private void aLinkIsSelected(LinkResponseDTO selectedLink) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("actions-on-link-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("fxml/actions-on-link-view.fxml"));
         fxmlLoader.setController(new ActionsOnLinkController(selectedLink,centerScrollPane));
         centerScrollPane.setContent(fxmlLoader.load());
     }
