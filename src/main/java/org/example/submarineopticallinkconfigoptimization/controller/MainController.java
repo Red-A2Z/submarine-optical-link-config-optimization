@@ -149,7 +149,7 @@ public class MainController {
             System.out.println(e.getMessage());
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText("Error");
-            alert.setContentText("Error while running attempting to open 'About' ");
+            alert.setContentText("Error while attempting to open 'About' ");
             alert.showAndWait();
         }
 
