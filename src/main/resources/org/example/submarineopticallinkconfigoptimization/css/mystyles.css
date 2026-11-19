@@ -1,0 +1,36 @@
+/* General styling */
+.root {
+    -fx-font-family: "Arial";
+    -fx-background-color: #f5f5f5;
+}
+
+/* Labels */
+.label {
+    -fx-text-fill: #333333;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: white;
+    -fx-font-size: 20
+}
+
+.button:hover {
+    -fx-background-color: #1d4ed8;
+}
+
+
+#linkNameLabel {
+    -fx-font-size: 30px;
+}
+
+#selectALinkLabel {
+    -fx-font-size:30px;
+    -fx-text-fill: #737272;
+}
+
+.details-label{
+    -fx-font-size:30px;
+    -fx-font-weight:bold;
+}

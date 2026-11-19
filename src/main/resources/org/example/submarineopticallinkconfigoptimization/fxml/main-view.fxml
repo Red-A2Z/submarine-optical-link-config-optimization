@@ -4,7 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.submarineopticallinkconfigoptimization.controller.MainController">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.submarineopticallinkconfigoptimization.controller.MainController"
+            stylesheets="@../css/mystyles.css">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -17,17 +19,17 @@
       </MenuBar>
    </top>
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="150.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="newLinkButton" mnemonicParsing="false" onAction="#openLinkForm" text="New Link" />
             <TextField fx:id="searchTextField" />
-            <ListView fx:id="linksList" onMouseClicked="#mouseClickedOnListView" prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="linksList" onMouseClicked="#mouseClickedOnListView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
          </children>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <padding>
-            <Insets top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
    </left>
