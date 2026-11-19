@@ -21,8 +21,6 @@ public class MainController {
 
     //Menu (Top)
     @FXML
-    private MenuItem exportAsPdfMenuItem;
-    @FXML
     private MenuItem aboutMenuItem;
 
     //Left side
