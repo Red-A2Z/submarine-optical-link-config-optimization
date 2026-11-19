@@ -105,7 +105,7 @@ public class MainController {
 
 
     @FXML
-    protected void openLinkForm() throws IOException {
+    private void openLinkForm() throws IOException {
 
         Stage linkFormStage = new Stage();
 
@@ -133,6 +133,27 @@ public class MainController {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("fxml/actions-on-link-view.fxml"));
         fxmlLoader.setController(new ActionsOnLinkController(selectedLink,centerScrollPane));
         centerScrollPane.setContent(fxmlLoader.load());
+    }
+
+
+    @FXML
+    private void openAboutStage(){
+        try{
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("fxml/about-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setScene(scene);
+            stage.show();
+
+        }catch (IOException e) {
+            System.out.println(e.getMessage());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Error");
+            alert.setContentText("Error while running attempting to open 'About' ");
+            alert.showAndWait();
+        }
+
+
     }
 
 

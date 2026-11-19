@@ -9,6 +9,8 @@ module org.example.submarineopticallinkconfigoptimization {
     requires gurobi;
     requires ojalgo;
     requires java.sql;
+    requires org.commonmark;
+    requires javafx.web;
 
     opens org.example.submarineopticallinkconfigoptimization to javafx.fxml;
     exports org.example.submarineopticallinkconfigoptimization;
