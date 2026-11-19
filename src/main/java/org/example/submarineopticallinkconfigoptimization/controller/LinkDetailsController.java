@@ -116,11 +116,11 @@ public class LinkDetailsController {
                 .editable(false);
 
         Field<DoubleField> staticOutputField_4 = Field.ofDoubleType(linkResponseDTO.getAmplifierInputPower())
-                .label("The input power of each amplifier:")
+                .label("The input power of each amplifier (dBm):")
                 .editable(false);
 
         Field<DoubleField> staticOutputField_5 = Field.ofDoubleType(linkResponseDTO.getFinalReceivedPower())
-                .label("The final received power:")
+                .label("The final received power (dBm):")
                 .editable(false);
 
 

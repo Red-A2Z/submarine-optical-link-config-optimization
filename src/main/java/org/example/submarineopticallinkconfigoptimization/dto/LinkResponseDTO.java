@@ -67,10 +67,10 @@ public class LinkResponseDTO {
     //The individual gain of each amplifier (dB)
     private double amplifierGain;
 
-    // The input power of each amplifier
+    // The input power of each amplifier (dBm)
     private double amplifierInputPower;
 
-    // The final received power
+    // The final received power (dBm)
     private double finalReceivedPower;
 
 
