@@ -81,12 +81,11 @@ public class ActionsOnLinkController {
             updateStage.show();
 
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText("Error");
-            alert.setContentText(e.getMessage());
+            alert.setContentText("Error while attempting to open the update form");
             alert.showAndWait();
-            System.out.println("Error while attempting to open the update form");
-            System.out.println(e.getMessage());
         }
 
     }
