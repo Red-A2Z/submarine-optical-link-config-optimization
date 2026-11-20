@@ -48,12 +48,13 @@ In order design a simple yet effective model, we considered the following assump
 - The **Final received power** must be greater than or equal to the **Minimum required received optical power**.
 
 ## 6. Functionalities
-- Input validation.
-- Calculation.
-- In the case of successful calculations, link record creation in the database.
-- List of created links display.
-- Link name and/or description update.
-- Link record removal from the database.
+- Input validation
+- Calculation
+- In the case of successful calculations, link record creation in the database
+- List of created links display
+- Link name and/or description update
+- Link record removal from the database
+- Link information (input + calculation result) export as PDF
 
 ## 7. How-to guide
 To use this app:
@@ -63,12 +64,15 @@ To use this app:
 
 
 ## 8. Main technical stack
-- Java, JavaFX & FXML 
-- Formsfx & Bootstrapfx
+- Java, JavaFX (including JavaFX's CSS) & FXML
+- HTML & CSS
+- Formsfx
 - Lombok
 - OjAlgo
 - Gurobi (Not tested: required a license. The current app logic uses OjAlgo instead)
 - PostgreSQL & JDBC
+- CommonMark
+- Openhtmltopdf
 - Maven
 
 
