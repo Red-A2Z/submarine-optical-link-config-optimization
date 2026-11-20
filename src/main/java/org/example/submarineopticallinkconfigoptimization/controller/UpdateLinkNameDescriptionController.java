@@ -56,7 +56,6 @@ public class UpdateLinkNameDescriptionController {
         updateForm = Form.of(Group.of(linkNameField,linkDescriptionField));
 
         Button updateButton = new Button("Update");
-        updateButton.setFont(new Font(20));
         updateButton.setOnAction(event -> update());
 
 
