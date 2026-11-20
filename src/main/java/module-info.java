@@ -11,6 +11,7 @@ module org.example.submarineopticallinkconfigoptimization {
     requires java.sql;
     requires org.commonmark;
     requires javafx.web;
+    requires openhtmltopdf.pdfbox;
 
     opens org.example.submarineopticallinkconfigoptimization to javafx.fxml;
     exports org.example.submarineopticallinkconfigoptimization;

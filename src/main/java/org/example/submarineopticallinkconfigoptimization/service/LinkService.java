@@ -1,5 +1,6 @@
 package org.example.submarineopticallinkconfigoptimization.service;
 
+import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
 import javafx.beans.property.SimpleStringProperty;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkRequestDTO;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkResponseDTO;
@@ -7,6 +8,10 @@ import org.example.submarineopticallinkconfigoptimization.dto.LinkUpdateRequestD
 import org.example.submarineopticallinkconfigoptimization.entity.Link;
 import org.example.submarineopticallinkconfigoptimization.repository.LinkRepository;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -159,6 +164,49 @@ public class LinkService {
     public void deleteLink(long linkId){
 
         linkRepository.deleteLink(linkId);
+
+    }
+
+
+
+    public void saveAsPDF(LinkResponseDTO selectedLink, Path exportPath) throws IOException{
+
+
+        String html = Files.readString(Path.of("src/main/resources/org/example/submarineopticallinkconfigoptimization/template/link-pdf-template.html"));
+
+        html = html.formatted(
+                selectedLink.getLinkName().get(),
+                selectedLink.getLinkDescription().get(),
+
+                selectedLink.getNumberOfAmplifiers(),
+                selectedLink.getDistanceBetweenAmplifiers(),
+                selectedLink.getAmplifierGain(),
+                selectedLink.getAmplifierInputPower(),
+                selectedLink.getFinalReceivedPower(),
+
+                selectedLink.getLinkLength(),
+                selectedLink.getLinkAttenuation(),
+                selectedLink.getTransmitterOutputPower(),
+                selectedLink.getMinReceivedPower(),
+                selectedLink.getMinAmplifierGain(),
+                selectedLink.getMaxAmplifierGain(),
+                selectedLink.getMinAmplifierInputPower(),
+                selectedLink.getMaxAmplifierOutputPower(),
+                selectedLink.getMaxNumberOfAmplifiers()
+        );
+
+        try(FileOutputStream fileOutputStream = new FileOutputStream(exportPath.toString())){
+
+            PdfRendererBuilder builder = new PdfRendererBuilder();
+            builder.withHtmlContent(html,Path.of("src/main/resources/org/example/submarineopticallinkconfigoptimization/template").toUri().toString());
+            builder.toStream(fileOutputStream);
+            builder.run();
+
+        }
+
+
+
+
 
     }
 

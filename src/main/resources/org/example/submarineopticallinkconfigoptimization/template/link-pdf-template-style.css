@@ -1,0 +1,27 @@
+
+div{
+    text-align: center;
+    padding: 30px;
+}
+
+h1{
+    margin: 30px;
+}
+
+table{
+    margin: 0 auto;
+}
+
+#linkNameLabel{
+    font-size: 30px;
+    font-weight:bold;
+}
+
+.details-label{
+    font-size:20px;
+    font-weight:bold;
+}
+
+td{
+    padding: 10px;
+}

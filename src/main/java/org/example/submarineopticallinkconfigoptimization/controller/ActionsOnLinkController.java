@@ -31,6 +31,9 @@ public class ActionsOnLinkController {
     private Button deleteButton;
     @FXML
     private Button detailsButton;
+    @FXML
+    private Button saveAsPDFButton;
+
 
     private final ScrollPane centerScrollPane;
 
@@ -60,6 +63,7 @@ public class ActionsOnLinkController {
         updateButton.setOnAction(event -> updateButtonClicked());
         deleteButton.setOnAction(event -> deleteButtonClicked());
         detailsButton.setOnAction(event -> detailsButtonClicked());
+        saveAsPDFButton.setOnAction(event -> saveAsPDFButtonClicked());
 
     }
 
@@ -149,6 +153,31 @@ public class ActionsOnLinkController {
         }
 
     }
+
+
+
+    private void saveAsPDFButtonClicked(){
+
+        try{
+
+            Stage saveAsPDFStage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("fxml/export-as-pdf-path-view.fxml"));
+            fxmlLoader.setController(new ExportAsPdfPathController(selectedLink, saveAsPDFStage));
+            Scene saveAsPDFScene = new Scene(fxmlLoader.load(),800,400);
+            saveAsPDFStage.setScene(saveAsPDFScene);
+            saveAsPDFStage.show();
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Error");
+            alert.setContentText("Error while attempting to open the 'export as PDF' form");
+            alert.showAndWait();
+
+        }
+
+    }
+
 
 
 
