@@ -65,14 +65,13 @@ To use this app:
 
 ## 8. Main technical stack
 - Java, JavaFX (including JavaFX's CSS) & FXML
-- HTML & CSS
 - Formsfx
 - Lombok
 - OjAlgo
 - Gurobi (Not tested: required a license. The current app logic uses OjAlgo instead)
 - PostgreSQL & JDBC
 - CommonMark
-- Openhtmltopdf
+- HTML, CSS & Openhtmltopdf
 - Maven
 
 
