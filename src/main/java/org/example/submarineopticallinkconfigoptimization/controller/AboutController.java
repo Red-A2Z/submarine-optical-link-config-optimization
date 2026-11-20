@@ -21,7 +21,7 @@ public class AboutController {
     public void initialize() throws IOException {
 
 
-        String mdString = Files.readString(Path.of("HELP.md"));
+        String mdString = Files.readString(Path.of("README.md"));
 
         Parser parser = Parser.builder().build();
         HtmlRenderer htmlRenderer = HtmlRenderer.builder().build();
