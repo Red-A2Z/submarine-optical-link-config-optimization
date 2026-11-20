@@ -1,7 +1,6 @@
 package org.example.submarineopticallinkconfigoptimization.repository;
 
 
-import org.example.submarineopticallinkconfigoptimization.dto.LinkUpdateRequestDTO;
 import org.example.submarineopticallinkconfigoptimization.entity.Link;
 import org.example.submarineopticallinkconfigoptimization.exception.RepositoryException;
 

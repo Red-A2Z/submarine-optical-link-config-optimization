@@ -3,7 +3,6 @@ package org.example.submarineopticallinkconfigoptimization.service;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkRequestDTO;
 import org.example.submarineopticallinkconfigoptimization.dto.LinkResponseDTO;
 import org.example.submarineopticallinkconfigoptimization.entity.Link;
-import org.example.submarineopticallinkconfigoptimization.exception.RepositoryException;
 import org.example.submarineopticallinkconfigoptimization.repository.LinkRepository;
 import org.ojalgo.optimisation.ExpressionsBasedModel;
 import org.ojalgo.optimisation.Optimisation;
