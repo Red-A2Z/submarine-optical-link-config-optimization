@@ -12,7 +12,7 @@
 <br>
 
 ## 1. Overview:
- This is an application that can help in designing submarine optical links by calculating the minimum required number of amplifiers to use as well as the maximum distance between two successive ones.
+ This is an application intended to help in designing submarine optical links by calculating the minimum required number of amplifiers to use as well as the maximum distance between two successive ones.
 
 ## 2. Input:
 - Link name
